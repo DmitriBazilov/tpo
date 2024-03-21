@@ -77,12 +77,12 @@ public class ThinkingTest {
 
     @SneakyThrows
     @Test
-    @DisplayName("interrupt think")
-    public void interruptThink() {
+    @DisplayName("finish think")
+    public void finishThink() {
         actualEntity.startIdentify(Identity.CAMERA);
         Thread.sleep(1000);
         for (Thread t : actualEntity.getThinks()) {
-            t.interrupt();
+            actualEntity.finishThinking(t);
         }
         Entity expectedEntity = new Entity(Position.STAYING, Identity.NOT_DETERMINED, true);
         assertEquals(expectedEntity, actualEntity);
